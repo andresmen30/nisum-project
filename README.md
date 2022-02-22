@@ -13,6 +13,11 @@ La implementación del proyecto se llevo acabo con Java 8, junto con el framewor
 ### Base de datos H2
 ### Intellij
 
+## Diagrama
+
+![diagrama architecture hexagonal](https://user-images.githubusercontent.com/18649868/155082595-8e0e7eaf-a4e8-4419-98c3-d3ef60ee3413.png)
+
+
 
 ## Consumo Servicio /nisum-project
 
@@ -343,7 +348,7 @@ java -jar nisum-project-v0.0.1-SNAPSHOT.jar
 ###### Documentación [https://documenter.getpostman.com/view/8454301/UV5aeF7C](https://documenter.getpostman.com/view/8454301/UVkmRHEc).
 
 
-![Diagrama en blanco (1)](https://user-images.githubusercontent.com/18649868/155082376-5a037f8b-3928-4d6b-aaaf-2a71052cf8a7.png)
+
 
 
 
