@@ -11,9 +11,10 @@ La implementación del proyecto se llevo acabo con Java 8, junto con el framewor
 ### Mockito
 ### Tomcat
 ### Base de datos H2
+### Intellij
 
 
-## Consumo Servicio /project-mutant
+## Consumo Servicio /nisum-project
 
 ### url: http://localhost:7071/nisum-project/
 
@@ -22,11 +23,11 @@ La implementación del proyecto se llevo acabo con Java 8, junto con el framewor
 ### POST /user
 
 Este método se utiliza para la creación de un usuario
-El request esta compuesto solamente por el campo dna con la estructura de un Array, conteniendo así el valor de la secuencia de ADN.
+El request esta compuesto por la información basica del usuario
 
-El response contiene los campos code y message el cual retornan un codigo 200 si la secuencia es de un mutante de lo contrario retorna un 403 si es un humano.
+El response contiene información sobre fechas de actualización y creación de usuario e información de credenciales.
 
-En dado caso que la estructura del ADN este mal retornara un codigo 400.
+En dado caso de que falle por mandatoriedad de campos o validación de los mismos lanzara un error.
 
 
 #### Request exitoso creación de usuario
@@ -55,7 +56,7 @@ En dado caso que la estructura del ADN este mal retornara un codigo 400.
 }
 ```
 
-#### Response Exitoso ADN humano
+#### Response exitoso creación de usuario
 ```
 {
     "userId": 1,
@@ -68,75 +69,254 @@ En dado caso que la estructura del ADN este mal retornara un codigo 400.
 ```
 
 
-#### Request Exitoso ADN mutante
+#### Request validación mandatoriedad de campos
 ```
 {
-   "dna":[
-      "ATGCGA",
-      "CAGTGC",
-      "TTATGT",
-      "AGAAGG",
-      "CCCCTA",
-      "TCACTG"
+   "name":"Andres Mendez",
+   "email":"",
+   "password":"",
+   "phones":[
+      {
+         "number":"1234567",
+         "cityCode":"1",
+         "countryCode":"57"
+      },
+      {
+         "number":"3123123",
+         "cityCode":"2",
+         "countryCode":"54"
+      },
+      {
+         "number":"4234324",
+         "cityCode":"2",
+         "countryCode":"43"
+      }
    ]
 }
 ```
 
-#### Response Exitoso ADN mutante
+#### Response validación mandatoriedad de campos
 ```
 {
-    "code": 200,
-    "message": "Eres uno de los nuestros, bienvenido al equipo mutante"
+    "code": 400,
+    "message": "Validation error",
+    "details": [
+        "email : no debe estar vacío",
+        "password : no debe estar vacío"
+    ]
 }
 ```
 
-#### Request Error Formato invalido
+#### Request validación correo ya existente
 ```
 {
-"dna":["PTGCGA", "CAGTGC", "TTATGT","AGAAGG","CCCCTA","TCAVTG"]
+   "name":"Reclutador nisum",
+   "email":"nisum@gmail.com",
+   "password":"123",
+   "phones":[
+      {
+         "number":"1234567",
+         "cityCode":"1",
+         "countryCode":"57"
+      },
+      {
+         "number":"3123123",
+         "cityCode":"2",
+         "countryCode":"54"
+      },
+      {
+         "number":"4234324",
+         "cityCode":"2",
+         "countryCode":"43"
+      }
+   ]
 }
 ```
 
 #### Response Error Formato invalido
 ```
 {
-    "code": 500,
-    "message": "com.mercadolibre.projectomutante.exceptions.FormatInvalidDNAException: Oops la secuencia del ADN del sujeto, no es acorde a la base nitrogenada establecida"
+    "code": 409,
+    "message": "Validation error",
+    "details": [
+        "El correo ya registrado"
+    ]
 }
 ```
 
-#### Request Error Tamaño de Array invalido
+### PUT /user/{id}
+
+Este método se utiliza para la actualización de un usuario
+El request esta compuesto por la información basica del usuario y en el path ira el {id} para identificar el usuario a actualizar
+
+El response contiene información sobre fechas de actualización y creación de usuario e información de credenciales.
+
+En dado caso de que falle por mandatoriedad de campos, usuario ya existente o validación de los mismos lanzara un error.
+
+
+#### Request exitoso actualización de usuario
 ```
 {
-   "dna":["ATGCGA", "CAGTGC", "TTATGT","AGAAGG","A","TTG"]
+   "name":"Reclutador nisum",
+   "email":"prueba.correo@gmail.com",
+   "password":"123",
+   "phones":[
+      {
+         "number":"3108841501",
+         "cityCode":"1",
+         "countryCode":"57"
+      },
+      {
+         "number":"3123123",
+         "cityCode":"2",
+         "countryCode":"54"
+      }
+   ]
 }
 ```
 
-#### Response Error Tamaño de Array invalido
+#### Request exitoso actualización de usuario
 ```
 {
-    "code": 500,
-    "message": "com.mercadolibre.projectomutante.exceptions.SizeInvalidDNAException: Oops el tamaño de la secuencia del ADN no es correcto"
+    "userId": 1,
+    "created": "2022-02-21T22:03:42.104",
+    "modified": "2022-02-22T01:10:20.09",
+    "lastLogin": "2022-02-21T22:03:42.104",
+    "token": "a4053cfa-fddb-40d9-bc30-71d0cd013418",
+    "active": true
 }
 ```
 
-### GET /stats
+#### Response no exitoso actualización de usuario
+```
+{
+    "code": 409,
+    "message": "Validation error",
+    "details": [
+        "El correo ya registrado"
+    ]
+}
+```
 
-Este método retorna las estadisticas de las pruebas, de cuantos sujetos son mutantes y humanos, también se calcula el ratio, que es la relación entre mutante y humano.
+### GET /user
+
+Este método se utiliza para obtener todos los usuarios registrados
 
 
-#### Response Exitoso 
+#### Response exitoso todos los usuarios registrados
+```
+[
+    {
+        "userId": 1,
+        "name": "Reclutador nisum",
+        "email": "prueba.correo@gmail.com",
+        "password": "123",
+        "created": "2022-02-21T22:03:42.104",
+        "modified": "2022-02-22T01:12:11.599",
+        "lastLogin": "2022-02-21T22:03:42.104",
+        "token": "a4053cfa-fddb-40d9-bc30-71d0cd013418",
+        "phones": [
+            {
+                "phoneId": 13,
+                "number": "3108841501",
+                "cityCode": "1",
+                "countryCode": "57"
+            },
+            {
+                "phoneId": 14,
+                "number": "3123123",
+                "cityCode": "2",
+                "countryCode": "54"
+            }
+        ],
+        "active": true
+    },
+    {
+        "userId": 5,
+        "name": "Reclutador nisum",
+        "email": "nisum@gmail.com",
+        "password": "123",
+        "created": "2022-02-22T00:27:54.597",
+        "modified": null,
+        "lastLogin": "2022-02-22T00:27:54.597",
+        "token": "b0b1a6db-085a-4afd-af99-397f4e0911c6",
+        "phones": [
+            {
+                "phoneId": 6,
+                "number": "1234567",
+                "cityCode": "1",
+                "countryCode": "57"
+            },
+            {
+                "phoneId": 7,
+                "number": "3123123",
+                "cityCode": "2",
+                "countryCode": "54"
+            },
+            {
+                "phoneId": 8,
+                "number": "4234324",
+                "cityCode": "2",
+                "countryCode": "43"
+            }
+        ],
+        "active": true
+    }
+]
+```
+
+### GET /user/{id}
+
+Este método se utiliza para obtener los usuarios por {id}
+
+
+#### Response exitoso usuario por {id}
+```
+[
+    {
+        "userId": 1,
+        "name": "Reclutador nisum",
+        "email": "prueba.correo@gmail.com",
+        "password": "123",
+        "created": "2022-02-21T22:03:42.104",
+        "modified": "2022-02-22T01:12:11.599",
+        "lastLogin": "2022-02-21T22:03:42.104",
+        "token": "a4053cfa-fddb-40d9-bc30-71d0cd013418",
+        "phones": [
+            {
+                "phoneId": 13,
+                "number": "3108841501",
+                "cityCode": "1",
+                "countryCode": "57"
+            },
+            {
+                "phoneId": 14,
+                "number": "3123123",
+                "cityCode": "2",
+                "countryCode": "54"
+            }
+        ],
+        "active": true
+    }
+]
+```
+
+### DELETE /user/{id}
+
+Este método se utiliza para eliminar usuarios por {id}
+
+
+
+#### Response exitoso usuario eliminado por {id}
 ```
 {
     "code": 200,
-    "message": "Success",
-    "resultStats": {
-        "countMutantDna": 0,
-        "countHumantDna": 0,
-        "ratio": 0.0
-    }
+    "message": "Se ha eliminado existosamente"
 }
 ```
+
+
+
 
 ## Compilación del proyecto
 
@@ -148,19 +328,19 @@ git clone https://github.com/andresmen30/Project-Mutant.git
 
 ##### Compilar
 
-Ubíquese en la ruta /ProjectoMutante
+Ubíquese en la ruta /nisum-project
 ```
 mvn clean install
 ```
 
 ##### Desplegar
 
-Ubíquese en la ruta /ProjectoMutante/launcher/tarjet y ejecute:
+Ubíquese en la ruta /nisum-project/target y ejecute:
 ```
 java -jar launcher-0.0.1.jar
 ```
 
-###### Documentación [https://documenter.getpostman.com/view/8454301/UV5aeF7C](https://documenter.getpostman.com/view/8454301/UV5aeF7C).
+###### Documentación [https://documenter.getpostman.com/view/8454301/UV5aeF7C](https://documenter.getpostman.com/view/8454301/UVkmRHEc).
 
 
 
