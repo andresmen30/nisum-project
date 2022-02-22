@@ -1,4 +1,4 @@
-package com.nisum.project.infrastructure.resource.user.response;
+package com.nisum.project.application.resource.user.response;
 
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

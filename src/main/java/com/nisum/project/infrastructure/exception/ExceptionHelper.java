@@ -1,6 +1,6 @@
 package com.nisum.project.infrastructure.exception;
 
-import com.nisum.project.infrastructure.resource.response.ErrorResponse;
+import com.nisum.project.application.resource.response.ErrorResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

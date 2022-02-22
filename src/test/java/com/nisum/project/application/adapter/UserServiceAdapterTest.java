@@ -2,8 +2,8 @@ package com.nisum.project.application.adapter;
 
 import com.nisum.project.domain.model.PhoneModel;
 import com.nisum.project.domain.model.UserModel;
-import com.nisum.project.domain.spi.UserPersistencePort;
-import com.nisum.project.infrastructure.resource.user.response.UserResponse;
+import com.nisum.project.domain.port.UserPersistencePort;
+import com.nisum.project.application.resource.user.response.UserResponse;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.junit.jupiter.api.Assertions;

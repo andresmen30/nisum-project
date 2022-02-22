@@ -1,7 +1,7 @@
 package com.nisum.project.infrastructure.adapter;
 
 import com.nisum.project.domain.model.UserModel;
-import com.nisum.project.domain.spi.UserPersistencePort;
+import com.nisum.project.domain.port.UserPersistencePort;
 import com.nisum.project.infrastructure.entity.User;
 import com.nisum.project.infrastructure.mappers.UserMapper;
 import com.nisum.project.infrastructure.repository.UserRepository;

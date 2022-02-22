@@ -1,7 +1,7 @@
-package com.nisum.project.infrastructure.resource.user;
+package com.nisum.project.application.resource.user;
 
 
-import com.nisum.project.application.api.UserService;
+import com.nisum.project.application.port.UserService;
 import com.nisum.project.domain.model.UserModel;
 import com.nisum.project.infrastructure.util.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;

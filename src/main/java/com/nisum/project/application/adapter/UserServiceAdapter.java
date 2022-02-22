@@ -1,10 +1,10 @@
 package com.nisum.project.application.adapter;
 
-import com.nisum.project.application.api.UserService;
+import com.nisum.project.application.port.UserService;
 import com.nisum.project.domain.model.UserModel;
-import com.nisum.project.domain.spi.UserPersistencePort;
+import com.nisum.project.domain.port.UserPersistencePort;
 import com.nisum.project.infrastructure.mappers.UserMapper;
-import com.nisum.project.infrastructure.resource.user.response.UserResponse;
+import com.nisum.project.application.resource.user.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

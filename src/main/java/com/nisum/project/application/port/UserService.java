@@ -1,15 +1,16 @@
-package com.nisum.project.domain.spi;
+package com.nisum.project.application.port;
+
 
 import com.nisum.project.domain.model.UserModel;
+import com.nisum.project.application.resource.user.response.UserResponse;
 
 import java.util.List;
 
-public interface UserPersistencePort {
+public interface UserService {
 
+    UserResponse create(final UserModel userModel);
 
-    UserModel create(final UserModel userModel);
-
-    UserModel update(final UserModel userModel, final Long idUser);
+    UserResponse update(final UserModel userModel, final Long idUser);
 
     void delete(final Long idUser);
 
@@ -22,5 +23,6 @@ public interface UserPersistencePort {
     boolean isExistByIdAndEmail(final Long id, final String email);
 
     boolean isExistById(final Long userId);
+
 
 }

@@ -1,6 +1,6 @@
 package com.nisum.project.infrastructure.util;
 
-import com.nisum.project.infrastructure.resource.response.ErrorResponse;
+import com.nisum.project.application.resource.response.ErrorResponse;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

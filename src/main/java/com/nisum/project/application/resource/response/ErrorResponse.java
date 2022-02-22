@@ -1,4 +1,4 @@
-package com.nisum.project.infrastructure.resource.response;
+package com.nisum.project.application.resource.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

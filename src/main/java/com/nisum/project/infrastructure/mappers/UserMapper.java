@@ -2,7 +2,7 @@ package com.nisum.project.infrastructure.mappers;
 
 import com.nisum.project.domain.model.UserModel;
 import com.nisum.project.infrastructure.entity.User;
-import com.nisum.project.infrastructure.resource.user.response.UserResponse;
+import com.nisum.project.application.resource.user.response.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
