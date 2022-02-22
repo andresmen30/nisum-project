@@ -322,7 +322,7 @@ Este método se utiliza para eliminar usuarios por {id}
 
 ##### Clonar del repositorio
 ```
-git clone https://github.com/andresmen30/Project-Mutant.git
+git clone https://github.com/andresmen30/nisum-project.git
 ```
 
 
@@ -337,7 +337,7 @@ mvn clean install
 
 Ubíquese en la ruta /nisum-project/target y ejecute:
 ```
-java -jar launcher-0.0.1.jar
+java -jar nisum-project-v0.0.1-SNAPSHOT.jar
 ```
 
 ###### Documentación [https://documenter.getpostman.com/view/8454301/UV5aeF7C](https://documenter.getpostman.com/view/8454301/UVkmRHEc).
